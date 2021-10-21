@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+option go_package = "./proto";
+
+service Service{
+    rpc Match (MatchRequest) returns (MatchResponse) {}
+    rpc StartChat (stream Message) returns (stream Message) {}
+}
+
+message MatchRequest {
+    enum Gender {
+        Unknown = 0;
+        Male = 1;
+        Female = 2;
+        NonBinary = 3;
+    }
+    message MyInfo {
+        Gender gender = 1;
+        uint32 age = 2;
+        double latitude = 3;
+        double longitude = 4;
+    }
+    message Preferences {
+        uint32 kilometersRange = 1; // 25000 = all world
+        optional Gender gender = 2; // if not set, it looks for any gender
+        uint32 minAge = 3;
+        uint32 maxAge = 4;
+    }
+    MyInfo myInfo = 1;
+    Preferences preferences = 2;
+}
+message MatchResponse {
+    optional string chatKey = 2; // if not set, it doesn't found any match
+}
+message Message {
+    string text = 1;
+}
