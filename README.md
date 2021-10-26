@@ -1,5 +1,7 @@
 chat-and-meet-client
 
 # How compile .proto
-- for typescript:
-    https://github.com/badsyntax/grpc-js-typescript/tree/master/examples/grpc-proto-loader
+- for dart:
+    ```
+    protoc -I proto proto/service.proto --dart_out=grpc:proto --experimental_allow_proto3_optional=true
+    ```
