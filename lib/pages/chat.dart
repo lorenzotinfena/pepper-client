@@ -13,6 +13,7 @@ import 'package:chat_and_meet_client/proto/service.pb.dart';
 import 'package:chat_and_meet_client/proto/service.pbgrpc.dart';
 import 'package:chat_and_meet_client/proto/service.pbgrpc.dart';
 import 'package:chat_and_meet_client/proto/service.pbjson.dart';
+import 'package:flutter/foundation.dart';
 
 class ChatPage extends StatefulWidget {
   const ChatPage({Key? key}) : super(key: key);
@@ -28,7 +29,10 @@ class _ChatPageState extends State<ChatPage> {
 
   @override
   void initState() {
-    var bo = GrpcWebClientChannel.xhr(Uri.http('127.0.0.1:8080', ''));
+    print('INIT');
+    print(kDebugMode);
+    print(kReleaseMode);
+    var bo = GrpcWebClientChannel.xhr(Uri.http('localhost:8080', ''));
     var nat = ClientChannel('localhost', port: 8080, options: const ChannelOptions(credentials: ChannelCredentials.insecure()));
     final client = ServiceClient(bo);
     var req = MatchRequest(myInfo: MatchRequest_MyInfo(age: 18, gender: MatchRequest_Gender.NonBinary, latitude: 0, longitude: 0),preferences: MatchRequest_Preferences(gender: MatchRequest_Gender.Unknown, kilometersRange: 1000,maxAge: 22, minAge: 18));
