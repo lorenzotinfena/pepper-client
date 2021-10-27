@@ -8,7 +8,9 @@
 # Files and directories created by pub
 .dart_tool/
 .packages
-build/
+build/*
+# CUSTOM (ADD BUILD FOR GITHUB PAGES)
+!build/web/
 # If you're building an application, you may want to check-in your pubspec.lock
 pubspec.lock
 
