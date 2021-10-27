@@ -29,13 +29,14 @@ class _ChatPageState extends State<ChatPage> {
 
   @override
   void initState() {
-    print('INIT');
-    print(kDebugMode);
-    print(kReleaseMode);
-    var bo = GrpcWebClientChannel.xhr(Uri.http('localhost:8080', ''));
-    var nat = ClientChannel('localhost', port: 8080, options: const ChannelOptions(credentials: ChannelCredentials.insecure()));
-    final client = ServiceClient(bo);
+    var host = 'localhost';
+    if (kReleaseMode) host = 'chat-and-meet-server.herokuapp.com';
+
+    var channel = GrpcWebClientChannel.xhr(Uri.http(host + ':8080', ''));
+    final client = ServiceClient(channel);
     var req = MatchRequest(myInfo: MatchRequest_MyInfo(age: 18, gender: MatchRequest_Gender.NonBinary, latitude: 0, longitude: 0),preferences: MatchRequest_Preferences(gender: MatchRequest_Gender.Unknown, kilometersRange: 1000,maxAge: 22, minAge: 18));
+    var j = req.toProto3Json();
+    print(j);
     client.match(req);
     super.initState();
   }
