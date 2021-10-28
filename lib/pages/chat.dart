@@ -1,19 +1,18 @@
-import 'dart:convert';
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import 'package:flutter_chat_ui/flutter_chat_ui.dart';
 import 'package:grpc/grpc.dart';
-import 'package:grpc/grpc_or_grpcweb.dart';
-import 'package:grpc/grpc_web.dart';
+import 'package:grpc/grpc_connection_interface.dart';
 import 'package:intl/date_symbol_data_local.dart';
 //import 'package:mime/mime.dart';
 //import 'package:uuid/uuid.dart';
 import 'package:chat_and_meet_client/proto/service.pb.dart';
-import 'package:chat_and_meet_client/proto/service.pbgrpc.dart';
+import 'package:chat_and_meet_client/proto/service.pbgrpc.dart' as pb;
 import 'package:chat_and_meet_client/proto/service.pbgrpc.dart';
 import 'package:chat_and_meet_client/proto/service.pbjson.dart';
-import 'package:flutter/foundation.dart';
+
 
 class ChatPage extends StatefulWidget {
   const ChatPage({Key? key}) : super(key: key);
@@ -27,18 +26,35 @@ class _ChatPageState extends State<ChatPage> {
   final _user_me = const types.User(id: 'me');
   final _user_stranger = const types.User(id: 'stranger');
 
+  late pb.ServiceClient client;
+  String? ChatKey;
+  late StreamController<pb.Message> streamController;
   @override
   void initState() {
-    var host = 'localhost';
-    if (kReleaseMode) host = 'chat-and-meet-server.herokuapp.com';
-
-    var channel = GrpcWebClientChannel.xhr(Uri.http(host + ':8080', ''));
-    final client = ServiceClient(channel);
-    var req = MatchRequest(myInfo: MatchRequest_MyInfo(age: 18, gender: MatchRequest_Gender.NonBinary, latitude: 0, longitude: 0),preferences: MatchRequest_Preferences(gender: MatchRequest_Gender.Unknown, kilometersRange: 1000,maxAge: 22, minAge: 18));
-    var j = req.toProto3Json();
-    print(j);
-    client.match(req);
     super.initState();
+
+
+    
+  }
+  void Match(MatchRequest req) async {
+    final res = await client.match(req);
+    if (res.hasChatKey()){
+      streamController = StreamController<pb.Message>();
+      final responseStream = client.startChat(streamController.stream);
+      streamController.add(pb.Message(text: res.chatKey));
+      responseStream.listen((value) {
+        final textMessage = types.TextMessage(
+          author: _user_stranger,
+          id: 'fghfghjhi',
+          text: value.text,
+        );
+
+        _addMessage(textMessage);
+      });
+    }
+    else{
+      print('not found someone...');
+    }
   }
 
   void _addMessage(types.Message message) {
@@ -47,13 +63,11 @@ class _ChatPageState extends State<ChatPage> {
     });
   }
 
-
-
-
   void _handleSendPressed(types.PartialText message) {
+    streamController.add(pb.Message(text: message.text));
+
     final textMessage = types.TextMessage(
       author: _user_me,
-      //createdAt: DateTime.now().millisecondsSinceEpoch,
       id: 'fghfghjhi',
       text: message.text,
     );
@@ -61,9 +75,13 @@ class _ChatPageState extends State<ChatPage> {
     _addMessage(textMessage);
   }
 
-
   @override
   Widget build(BuildContext context) {
+    Map map = ModalRoute.of(context)!.settings.arguments as Map;
+    client = map['client'];
+    Match(map['request']);
+
+
     return Scaffold(
       body: SafeArea(
         bottom: false,
