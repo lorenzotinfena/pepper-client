@@ -46,6 +46,10 @@ class _ChatPageState extends State<ChatPage> {
 
 
       streamController.add(pb.Message(text: res.chatKey));
+      streamController.onCancel = () {
+            streamController.onCancel = null;
+            streamController.close();
+      };
       responseStream.listen((value) {
         final textMessage = types.TextMessage(
           author: _user_stranger,
@@ -80,6 +84,7 @@ class _ChatPageState extends State<ChatPage> {
   }
 
   void Stop(){
+    streamController.onCancel = null;
     streamController.close();
     setState(() {
       _messages.clear();
@@ -116,8 +121,8 @@ class _ChatPageState extends State<ChatPage> {
                       textStyle: const TextStyle(fontSize: 20),
                     ),
                     onPressed: () {
-                      Navigator.pop(context);
                       Stop();
+                      Navigator.pop(context);
                     },
                     child: const Text('Back'),
                   ),
@@ -125,7 +130,10 @@ class _ChatPageState extends State<ChatPage> {
                     style: TextButton.styleFrom(
                       textStyle: const TextStyle(fontSize: 20),
                     ),
-                    onPressed: Match,
+                    onPressed: (){
+                      Stop();
+                      Match();
+                    },
                     child: const Text('Next'),
                   ),
                 ],
