@@ -30,7 +30,7 @@ message MatchRequest {
     Preferences preferences = 2;
 }
 message MatchResponse {
-    optional string chatKey = 2; // if not set, it doesn't found any match
+    optional string chatKey = 1; // if not set, it doesn't found any match
 }
 message Message {
     string text = 1;

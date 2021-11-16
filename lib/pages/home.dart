@@ -151,7 +151,7 @@ class _State extends State<Home> {
                     currentRangeValues = values;
                   });
                   matchRequest.preferences.minAge = values.start.toInt();
-                  matchRequest.preferences.minAge = values.end.toInt();
+                  matchRequest.preferences.maxAge = values.end.toInt();
                 },
               ),
               Padding(

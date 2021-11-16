@@ -27,28 +27,29 @@ class _ChatPageState extends State<ChatPage> {
   bool built = false;
   late pb.ServiceClient client;
   late MatchRequest matchRequest;
-  late StreamController<pb.Message> streamController;
-
+  StreamController<pb.Message>? streamController;
+  String status = "Searching for a match...";
   void Match() async {
     setState(() {
       _messages.clear();
+      status = "Searching for a match...";
     });
     final res = await client.match(matchRequest);
     if (res.hasChatKey()) {
       streamController = StreamController<pb.Message>();
-      final responseStream = client.startChat(streamController.stream);
+      final responseStream = client.startChat(streamController!.stream);
       
-          setState(() {
-      _messages.add(types.TextMessage(
-      author: _user_me,
-      id: 'fghfghjhi',
-      text: res.chatKey));});
+       setState(() {
+         status = "Chatting";
+       });
 
 
-      streamController.add(pb.Message(text: res.chatKey));
-      streamController.onCancel = () {
-            streamController.onCancel = null;
-            streamController.close();
+      streamController!.add(pb.Message(text: res.chatKey));
+      streamController!.onCancel = () {
+            Stop();
+            setState(() {
+              status = "";
+            });
       };
       responseStream.listen((value) {
         final textMessage = types.TextMessage(
@@ -60,7 +61,9 @@ class _ChatPageState extends State<ChatPage> {
         _addMessage(textMessage);
       });
     } else {
-      print('not found anyone...');
+      setState(() {
+        status = "No match found";
+      });
     }
   }
 
@@ -72,7 +75,7 @@ class _ChatPageState extends State<ChatPage> {
 
   void _handleSendPressed(types.PartialText message) {
     if (streamController == null) return;
-    streamController.add(pb.Message(text: message.text));
+    streamController!.add(pb.Message(text: message.text));
 
     final textMessage = types.TextMessage(
       author: _user_me,
@@ -84,11 +87,10 @@ class _ChatPageState extends State<ChatPage> {
   }
 
   void Stop(){
-    streamController.onCancel = null;
-    streamController.close();
-    setState(() {
-      _messages.clear();
-    });
+    if (streamController == null) return;
+    streamController!.onCancel = null;
+    streamController!.close();
+    streamController = null;
   }
 
   @override
@@ -116,28 +118,41 @@ class _ChatPageState extends State<ChatPage> {
               ),
               Row(
                 children: [
-                  TextButton(
-                    style: TextButton.styleFrom(
-                      textStyle: const TextStyle(fontSize: 20),
-                    ),
-                    onPressed: () {
-                      Stop();
-                      Navigator.pop(context);
-                    },
-                    child: const Text('Back'),
+                  Row(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          TextButton(
+                            style: TextButton.styleFrom(
+                              textStyle: const TextStyle(fontSize: 20),
+                            ),
+                            onPressed: () {
+                              Stop();
+                              Navigator.pop(context);
+                            },
+                            child: const Text('Back'),
+                          ),
+                          TextButton(
+                            style: TextButton.styleFrom(
+                              textStyle: const TextStyle(fontSize: 20),
+                            ),
+                            onPressed: (){
+                              Stop();
+                              Match();
+                            },
+                            child: const Text('Next'),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
-                  TextButton(
-                    style: TextButton.styleFrom(
-                      textStyle: const TextStyle(fontSize: 20),
-                    ),
-                    onPressed: (){
-                      Stop();
-                      Match();
-                    },
-                    child: const Text('Next'),
-                  ),
-                ],
+                  Spacer(),
+                  Text(status)
+                ]
               ),
+              
             ],
           ),
         ),
