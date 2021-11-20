@@ -36,6 +36,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   grpc: ^3.0.2
   flutter_chat_ui: ^1.5.0
+  flutter_markdown: ^0.6.8
+  url_launcher: ^6.0.13
 
 dev_dependencies:
   flutter_test:
@@ -60,8 +62,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+     - assets/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

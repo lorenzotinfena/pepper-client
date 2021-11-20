@@ -13,10 +13,10 @@ import 'package:flutter/services.dart';
 
 class Home extends StatefulWidget {
   @override
-  _State createState() => _State();
+  _HomeState createState() => _HomeState();
 }
 
-class _State extends State<Home> {
+class _HomeState extends State<Home> {
   late ServiceClient client;
   MatchRequest matchRequest = MatchRequest(
       myInfo:
@@ -36,6 +36,7 @@ class _State extends State<Home> {
     client = ServiceClient(channel);
     super.initState();
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -183,8 +184,8 @@ class _State extends State<Home> {
                   child: FlatButton(
                     onPressed: () {
                       Navigator.pushNamed(context, '/chat', arguments: {
-                        'client': client,
-                        'request': matchRequest
+                          'client': client,
+                          'request': matchRequest
                       });
                     },
                     child: Text(
@@ -212,5 +213,3 @@ class _State extends State<Home> {
     );
   }
 }
-
-class TextInputFormatter {}

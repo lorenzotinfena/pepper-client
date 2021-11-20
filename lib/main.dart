@@ -3,10 +3,15 @@ import 'package:flutter/material.dart';
 import 'pages/home.dart';
 import 'pages/chat.dart';
 import 'pages/about.dart';
+import 'pages/contract.dart';
+import 'pages/textViewer.dart';
 void main() => runApp(MaterialApp(
     routes: {
-      '/': (context) => Home(),
+      '/contract': (context) => Contract(),
+      '/textViewer': (context) => TextViewer(),
+      '/home': (context) => Home(),
       '/chat': (context) => ChatPage(),
       '/about': (context) => About(),
     },
+    initialRoute: '/contract',
 ));
