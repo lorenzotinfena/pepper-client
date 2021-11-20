@@ -41,7 +41,7 @@ You can find the source code in the links below:
 - [https://github.com/LorenzoTinfena/chat-and-meet-client](https://github.com/LorenzoTinfena/chat-and-meet-client)
 - [https://github.com/LorenzoTinfena/chat-and-meet-server](https://github.com/LorenzoTinfena/chat-and-meet-server)
 
-To continue using this application, you must agree to:
+To continue using this application, you must read and agree to:
 1. [EULA](assets/EULA.md)
 2. [Privacy policy](assets/Privacy-policy.md)
 3. [Terms and conditions](assets/Terms-and-Conditions.md)
@@ -69,7 +69,7 @@ To continue using this application, you must agree to:
                       Navigator.pushReplacementNamed(context, '/home');
                     });
                   },
-                  child: Text('I agree'),
+                  child: Text('I Agree'),
                 ),
               ],
             )
