@@ -98,7 +98,20 @@ The Agreement constitutes the entire agreement between You and the Company regar
 
 You may be subject to additional terms and conditions that apply when You use or purchase other Company's services, which the Company will provide to You at the time of such use or purchase.
 
+# **Open-Source Notices**
+Certain components of the Software may be subject to open-source software licenses ("Open-Source Components"), which means any software license approved as open-source licenses by the Open Source Initiative or any substantially similar licenses, including without limitation any license that, as a condition of distribution of the software licensed under such license, requires that the distributor make the software available in source code format. The Software documentation includes copies of the licenses applicable to the Open-Source Components.
+
+To the extent there is conflict between the license terms covering the Open-Source Components and this EULA, the terms of such licenses will apply in lieu of the terms of this EULA. To the extent the terms of the licenses applicable to Open-Source Components prohibit any of the restrictions in this Agreement with respect to such Open-Source Component, such restrictions will not apply to such Open-Source Component. To the extent the terms of the licenses applicable to Open-Source Components require Licensor to make an offer to provide source code in connection with the Product, such offer is hereby made, and you may exercise it by contacting lorenzo.tinfena.personal@gmail.com .
+
+# **Intellectual Property Notices**
+The Software and all worldwide copyrights, trade secrets, and other intellectual property rights therein are the exclusive property of Lorenzo Tinfena. Lorenzo Tinfena reserves all rights in and to the Software not expressly granted to you in this EULA.
+
+# **Your Suggestions**
+Any feedback, comments, ideas, improvements or suggestions provided by You to the Company with respect to the Application shall remain the sole and exclusive property of the Company.
+
+The Company shall be free to use, copy, modify, publish, or redistribute the Suggestions for any purpose and in any way without any credit or any compensation to You.
+
 # **Contact Us**
 If you have any questions about this Agreement, You can contact Us:
 
-By visiting this page on our website: WebsiteUrl
+- By email: lorenzo.tinfena.personal@gmail.com

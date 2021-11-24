@@ -111,6 +111,7 @@ class _ChatPageState extends State<ChatPage> {
             children: [
               Expanded(
                 child: Chat(
+                  
                   messages: _messages,
                   onSendPressed: _handleSendPressed,
                   user: _user_me,
