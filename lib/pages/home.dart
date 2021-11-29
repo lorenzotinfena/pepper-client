@@ -16,6 +16,8 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
+
+
 class _HomeState extends State<Home> {
   late ServiceClient client;
   MatchRequest matchRequest = MatchRequest(
@@ -26,6 +28,7 @@ class _HomeState extends State<Home> {
   String targetGender = "Any";
   RangeValues currentRangeValues = const RangeValues(18, 25);
 
+
   @override
   void initState() {
     var host = '10.0.2.2';
@@ -33,7 +36,7 @@ class _HomeState extends State<Home> {
     final channel = ClientChannel(host,
         port: 9090,
         options: ChannelOptions(credentials: ChannelCredentials.insecure()));
-    client = ServiceClient(channel);
+    client =  ServiceClient(channel);
     super.initState();
   }
 

@@ -29,12 +29,16 @@ class _ChatPageState extends State<ChatPage> {
   late MatchRequest matchRequest;
   StreamController<pb.Message>? streamController;
   String status = "Searching for a match...";
+  ResponseFuture<MatchResponse>? future_match;
   void Match() async {
     setState(() {
       _messages.clear();
       status = "Searching for a match...";
     });
-    final res = await client.match(matchRequest);
+    final res;
+    future_match = client.match(matchRequest);
+    res = await future_match;
+    future_match = null;
     if (res.hasChatKey()) {
       streamController = StreamController<pb.Message>();
       final responseStream = client.startChat(streamController!.stream);
@@ -87,10 +91,16 @@ class _ChatPageState extends State<ChatPage> {
   }
 
   void Stop(){
-    if (streamController == null) return;
-    streamController!.onCancel = null;
-    streamController!.close();
-    streamController = null;
+    if (streamController == null) {
+      if (future_match != null) {
+      future_match!.cancel();
+      future_match = null;
+      }
+    } else {
+      streamController!.onCancel = null;
+      streamController!.close();
+      streamController = null;
+    }
   }
 
   @override
@@ -111,7 +121,6 @@ class _ChatPageState extends State<ChatPage> {
             children: [
               Expanded(
                 child: Chat(
-                  
                   messages: _messages,
                   onSendPressed: _handleSendPressed,
                   user: _user_me,
@@ -140,8 +149,10 @@ class _ChatPageState extends State<ChatPage> {
                               textStyle: const TextStyle(fontSize: 20),
                             ),
                             onPressed: (){
-                              Stop();
-                              Match();
+                              if (status!="Searching for a match..."){
+                                Stop();
+                                Match();
+                              }
                             },
                             child: const Text('Next'),
                           ),
