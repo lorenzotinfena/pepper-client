@@ -1,11 +1,11 @@
-import 'package:chat_and_meet_client/proto/service.pbenum.dart';
+import 'package:pepper_client/proto/service.pbenum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:chat_and_meet_client/proto/service.pb.dart';
-import 'package:chat_and_meet_client/proto/service.pbgrpc.dart';
-import 'package:chat_and_meet_client/proto/service.pbgrpc.dart';
-import 'package:chat_and_meet_client/proto/service.pbjson.dart';
+import 'package:pepper_client/proto/service.pb.dart';
+import 'package:pepper_client/proto/service.pbgrpc.dart';
+import 'package:pepper_client/proto/service.pbgrpc.dart';
+import 'package:pepper_client/proto/service.pbjson.dart';
 import 'package:grpc/grpc_connection_interface.dart';
 import 'package:flutter/foundation.dart';
 import 'package:grpc/grpc.dart';
@@ -15,8 +15,6 @@ class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
 }
-
-
 
 class _HomeState extends State<Home> {
   late ServiceClient client;
@@ -28,7 +26,6 @@ class _HomeState extends State<Home> {
   String targetGender = "Any";
   RangeValues currentRangeValues = const RangeValues(18, 25);
 
-
   @override
   void initState() {
     var host = '10.0.2.2';
@@ -36,10 +33,9 @@ class _HomeState extends State<Home> {
     final channel = ClientChannel(host,
         port: 9090,
         options: ChannelOptions(credentials: ChannelCredentials.insecure()));
-    client =  ServiceClient(channel);
+    client = ServiceClient(channel);
     super.initState();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -187,8 +183,8 @@ class _HomeState extends State<Home> {
                   child: FlatButton(
                     onPressed: () {
                       Navigator.pushNamed(context, '/chat', arguments: {
-                          'client': client,
-                          'request': matchRequest
+                        'client': client,
+                        'request': matchRequest
                       });
                     },
                     child: Text(

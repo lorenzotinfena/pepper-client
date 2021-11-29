@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.chat_and_meet_client">
+    package="com.example.pepper_client">
    <application
-        android:label="chat_and_meet_client"
+        android:label="Pepper - Chatroulette"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

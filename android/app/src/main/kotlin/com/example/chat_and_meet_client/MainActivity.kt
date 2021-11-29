@@ -1,4 +1,4 @@
-package com.example.chat_and_meet_client
+package com.example.pepper_client
 
 import io.flutter.embedding.android.FlutterActivity
 

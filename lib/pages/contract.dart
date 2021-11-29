@@ -1,11 +1,11 @@
-import 'package:chat_and_meet_client/proto/service.pbenum.dart';
+import 'package:pepper_client/proto/service.pbenum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:chat_and_meet_client/proto/service.pb.dart';
-import 'package:chat_and_meet_client/proto/service.pbgrpc.dart';
-import 'package:chat_and_meet_client/proto/service.pbgrpc.dart';
-import 'package:chat_and_meet_client/proto/service.pbjson.dart';
+import 'package:pepper_client/proto/service.pb.dart';
+import 'package:pepper_client/proto/service.pbgrpc.dart';
+import 'package:pepper_client/proto/service.pbgrpc.dart';
+import 'package:pepper_client/proto/service.pbjson.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:grpc/grpc_connection_interface.dart';
 import 'package:flutter/foundation.dart';
@@ -38,8 +38,8 @@ class _ContractState extends State<Contract> {
 ### This is an open source software
 
 You can find the source code in the links below:
-- [https://github.com/LorenzoTinfena/chat-and-meet-client](https://github.com/LorenzoTinfena/chat-and-meet-client)
-- [https://github.com/LorenzoTinfena/chat-and-meet-server](https://github.com/LorenzoTinfena/chat-and-meet-server)
+- [https://github.com/LorenzoTinfena/pepper-client](https://github.com/LorenzoTinfena/pepper-client)
+- [https://github.com/LorenzoTinfena/pepper-server](https://github.com/LorenzoTinfena/pepper-server)
 
 To continue using this application you must be at least **18** years of age, and you must read and agree to:
 - [EULA](assets/EULA.md)

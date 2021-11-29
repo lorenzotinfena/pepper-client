@@ -1,4 +1,4 @@
-chat-and-meet-client
+pepper-client
 
 # How compile .proto
 - for dart:

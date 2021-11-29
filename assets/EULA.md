@@ -1,7 +1,7 @@
 # **End-User License Agreement ("Agreement")**
 Last updated: November 20, 2021
 
-Please read this End-User License Agreement carefully before clicking the "I Agree" button, downloading or using AppName.
+Please read this End-User License Agreement carefully before clicking the "I Agree" button, downloading or using "Pepper - Chatroulette".
 
 # **Interpretation and Definitions**
 ## **Interpretation**
@@ -12,9 +12,9 @@ For the purposes of this End-User License Agreement:
 
 - **Agreement** means this End-User License Agreement that forms the entire agreement between You and the Company regarding the use of the Application. This Agreement has been created with the help of the EULA Generator.
 
-- **Application** means the software program provided by the Company downloaded by You to a Device, named AppName
+- **Application** means the software program provided by the Company downloaded by You to a Device, named "Pepper - Chatroulette"
 
-- **Company** (referred to as either "the Company", "We", "Us" or "Our" in this Agreement) refers to AppName.
+- **Company** (referred to as either "the Company", "We", "Us" or "Our" in this Agreement) refers to "Pepper - Chatroulette".
 
 - **Content** refers to content such as text, images, or other information that can be posted, uploaded, linked to or otherwise made available by You, regardless of the form of that content.
 

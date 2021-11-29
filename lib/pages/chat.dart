@@ -8,10 +8,10 @@ import 'package:grpc/grpc_connection_interface.dart';
 import 'package:intl/date_symbol_data_local.dart';
 //import 'package:mime/mime.dart';
 //import 'package:uuid/uuid.dart';
-import 'package:chat_and_meet_client/proto/service.pb.dart';
-import 'package:chat_and_meet_client/proto/service.pbgrpc.dart' as pb;
-import 'package:chat_and_meet_client/proto/service.pbgrpc.dart';
-import 'package:chat_and_meet_client/proto/service.pbjson.dart';
+import 'package:pepper_client/proto/service.pb.dart';
+import 'package:pepper_client/proto/service.pbgrpc.dart' as pb;
+import 'package:pepper_client/proto/service.pbgrpc.dart';
+import 'package:pepper_client/proto/service.pbjson.dart';
 
 class ChatPage extends StatefulWidget {
   const ChatPage({Key? key}) : super(key: key);
@@ -42,18 +42,17 @@ class _ChatPageState extends State<ChatPage> {
     if (res.hasChatKey()) {
       streamController = StreamController<pb.Message>();
       final responseStream = client.startChat(streamController!.stream);
-      
-       setState(() {
-         status = "Chatting";
-       });
 
+      setState(() {
+        status = "Chatting";
+      });
 
       streamController!.add(pb.Message(text: res.chatKey));
       streamController!.onCancel = () {
-            Stop();
-            setState(() {
-              status = "";
-            });
+        Stop();
+        setState(() {
+          status = "";
+        });
       };
       responseStream.listen((value) {
         final textMessage = types.TextMessage(
@@ -90,11 +89,11 @@ class _ChatPageState extends State<ChatPage> {
     _addMessage(textMessage);
   }
 
-  void Stop(){
+  void Stop() {
     if (streamController == null) {
       if (future_match != null) {
-      future_match!.cancel();
-      future_match = null;
+        future_match!.cancel();
+        future_match = null;
       }
     } else {
       streamController!.onCancel = null;
@@ -126,45 +125,42 @@ class _ChatPageState extends State<ChatPage> {
                   user: _user_me,
                 ),
               ),
-              Row(
-                children: [
-                  Row(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          TextButton(
-                            style: TextButton.styleFrom(
-                              textStyle: const TextStyle(fontSize: 20),
-                            ),
-                            onPressed: () {
+              Row(children: [
+                Row(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        TextButton(
+                          style: TextButton.styleFrom(
+                            textStyle: const TextStyle(fontSize: 20),
+                          ),
+                          onPressed: () {
+                            Stop();
+                            Navigator.pop(context);
+                          },
+                          child: const Text('Back'),
+                        ),
+                        TextButton(
+                          style: TextButton.styleFrom(
+                            textStyle: const TextStyle(fontSize: 20),
+                          ),
+                          onPressed: () {
+                            if (status != "Searching for a match...") {
                               Stop();
-                              Navigator.pop(context);
-                            },
-                            child: const Text('Back'),
-                          ),
-                          TextButton(
-                            style: TextButton.styleFrom(
-                              textStyle: const TextStyle(fontSize: 20),
-                            ),
-                            onPressed: (){
-                              if (status!="Searching for a match..."){
-                                Stop();
-                                Match();
-                              }
-                            },
-                            child: const Text('Next'),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  Spacer(),
-                  Text(status)
-                ]
-              ),
-              
+                              Match();
+                            }
+                          },
+                          child: const Text('Next'),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                Spacer(),
+                Text(status)
+              ]),
             ],
           ),
         ),
