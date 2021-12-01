@@ -4,14 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import 'package:flutter_chat_ui/flutter_chat_ui.dart';
 import 'package:grpc/grpc.dart';
-import 'package:grpc/grpc_connection_interface.dart';
-import 'package:intl/date_symbol_data_local.dart';
-//import 'package:mime/mime.dart';
-//import 'package:uuid/uuid.dart';
 import 'package:pepper_client/proto/service.pb.dart';
 import 'package:pepper_client/proto/service.pbgrpc.dart' as pb;
 import 'package:pepper_client/proto/service.pbgrpc.dart';
-import 'package:pepper_client/proto/service.pbjson.dart';
 
 class ChatPage extends StatefulWidget {
   const ChatPage({Key? key}) : super(key: key);

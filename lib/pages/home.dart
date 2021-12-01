@@ -1,15 +1,8 @@
-import 'package:pepper_client/proto/service.pbenum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
-import 'package:pepper_client/proto/service.pb.dart';
 import 'package:pepper_client/proto/service.pbgrpc.dart';
-import 'package:pepper_client/proto/service.pbgrpc.dart';
-import 'package:pepper_client/proto/service.pbjson.dart';
-import 'package:grpc/grpc_connection_interface.dart';
 import 'package:flutter/foundation.dart';
 import 'package:grpc/grpc.dart';
-import 'package:flutter/services.dart';
 
 class Home extends StatefulWidget {
   @override
