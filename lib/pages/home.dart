@@ -24,7 +24,7 @@ class _HomeState extends State<Home> {
     var host = '6.tcp.ngrok.io';
     if (kReleaseMode) host = 'EHHH VOLEEEEVIIIII';
     final channel = ClientChannel(host,
-        port: 18716,
+        port: 10655,
         options: ChannelOptions(credentials: ChannelCredentials.insecure()));
     client = ServiceClient(channel);
     super.initState();
