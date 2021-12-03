@@ -56,7 +56,7 @@ flutter_icons:
   android: true
   ios: true
 flutter_app_name:
-  name: "Pepper - Chatroulette"
+  name: "Pepper"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
