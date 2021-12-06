@@ -61,6 +61,7 @@ While using Our Application, in order to provide features of Our Application, We
 - Information regarding your age
 - Information regarding your gender
 - Information regarding some of your preferences
+- Information regarding in-app messages
 
 We use this information to provide features of Our Service, to improve and customize Our Service. The information may be uploaded to the Company's servers and/or a Service Provider's server or it may be simply stored on Your device.
 
