@@ -27,8 +27,8 @@ class _ContractState extends State<Contract> {
 ### This is an open source software
 
 You can find the source code in the links below:
-- [https://github.com/LorenzoTinfena/pepper-client](https://github.com/LorenzoTinfena/pepper-client)
-- [https://github.com/LorenzoTinfena/pepper-server](https://github.com/LorenzoTinfena/pepper-server)
+- [https://github.com/lorenzotinfena/pepper-client](https://github.com/lorenzotinfena/pepper-client)
+- [https://github.com/lorenzotinfena/pepper-server](https://github.com/lorenzotinfena/pepper-server)
 
 To continue using this application you must be at least **18** years of age, and you must read and agree to:
 - [EULA](assets/EULA.md)

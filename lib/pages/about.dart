@@ -19,8 +19,8 @@ class _State extends State<About> {
 ### This is an open source software
 
 You can find the source code in the links below:
-- [https://github.com/LorenzoTinfena/pepper-client](https://github.com/LorenzoTinfena/pepper-client)
-- [https://github.com/LorenzoTinfena/pepper-server](https://github.com/LorenzoTinfena/pepper-server)
+- [https://github.com/lorenzotinfena/pepper-client](https://github.com/lorenzotinfena/pepper-client)
+- [https://github.com/lorenzotinfena/pepper-server](https://github.com/lorenzotinfena/pepper-server)
 
 You read and agreed to:
 - [EULA](assets/EULA.md)
