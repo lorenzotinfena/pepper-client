@@ -22,11 +22,14 @@ You can find the source code in the links below:
 - [https://github.com/lorenzotinfena/pepper-client](https://github.com/lorenzotinfena/pepper-client)
 - [https://github.com/lorenzotinfena/pepper-server](https://github.com/lorenzotinfena/pepper-server)
 
+Donations: [https://paypal.me/lorenzotinfena](https://paypal.me/lorenzotinfena)
+
 You read and agreed to:
 - [EULA](assets/EULA.md)
 - [Privacy policy](assets/Privacy-policy.md)
 - [Terms and conditions](assets/Terms-and-Conditions.md)
 - [Disclaimer](assets/Disclaimer.md)
+
 """,
               onTapLink: (text, url, title) {
                 if (RegExp('^http').hasMatch(url!))

@@ -1,13 +1,9 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pepper_client/proto/service.pbgrpc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:grpc/grpc.dart';
 import 'package:flutter/services.dart' show rootBundle;
-
-
 
 class Home extends StatefulWidget {
   @override
@@ -31,20 +27,21 @@ class _HomeState extends State<Home> {
       channel = ClientChannel('10.0.2.2',
           port: 9090,
           options: ChannelOptions(credentials: ChannelCredentials.insecure()));
-    
+
       client = ServiceClient(channel);
     } else {
-      rootBundle.load('assets/certificate.pem').then((trustedRoot) { 
-      final channelCredentials =
-          new ChannelCredentials.secure(certificates: trustedRoot.buffer.asUint8List(),
-          onBadCertificate: (certificate, host) => true,);
+      rootBundle.load('assets/certificate.pem').then((trustedRoot) {
+        final channelCredentials = new ChannelCredentials.secure(
+          certificates: trustedRoot.buffer.asUint8List(),
+          onBadCertificate: (certificate, host) => true,
+        );
 
-      final ClientChannel channel = ClientChannel('129.152.23.39',
-          port: 9090,
-          options: ChannelOptions(credentials: channelCredentials));
-        
-    client = ServiceClient(channel); }
-      );
+        final ClientChannel channel = ClientChannel('129.152.18.163',
+            port: 9090,
+            options: ChannelOptions(credentials: channelCredentials));
+
+        client = ServiceClient(channel);
+      });
     }
 
     super.initState();
@@ -110,7 +107,8 @@ class _HomeState extends State<Home> {
                 ),
               ),
               SizedBox(height: 30),
-              Text("Enter your preferences about gender and age range of the stranger:"),
+              Text(
+                  "Enter your preferences about gender and age range of the stranger:"),
               DropdownButton<String>(
                 value: targetGender,
                 icon: const Icon(Icons.arrow_downward),
@@ -176,13 +174,11 @@ class _HomeState extends State<Home> {
                   inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                   keyboardType: TextInputType.number,
                   style: TextStyle(
-                    fontSize: 15.0,
-                    height: 1.0,
-                    color: Colors.black                  
-                  ),
+                      fontSize: 15.0, height: 1.0, color: Colors.black),
                   decoration: InputDecoration(
                       border: OutlineInputBorder(),
-                      labelText: 'Stranger max distance range (not yet supported)',
+                      labelText:
+                          'Stranger max distance range (not yet supported)',
                       hintText: 'Enter stranger max distance range'),
                   enabled: false,
                   onChanged: (String? range) {
@@ -203,13 +199,14 @@ class _HomeState extends State<Home> {
                   tag: "search",
                   child: FlatButton(
                     onPressed: () {
-                      if (matchRequest.myInfo.age < 18 || matchRequest.myInfo.age > 100) {
+                      if (matchRequest.myInfo.age < 18 ||
+                          matchRequest.myInfo.age > 100) {
                         showAlertDialog(context);
                       } else {
-                      Navigator.pushNamed(context, '/chat', arguments: {
-                        'client': client,
-                        'request': matchRequest
-                      });
+                        Navigator.pushNamed(context, '/chat', arguments: {
+                          'client': client,
+                          'request': matchRequest
+                        });
                       }
                     },
                     child: Text(
@@ -237,29 +234,30 @@ class _HomeState extends State<Home> {
     );
   }
 }
-showAlertDialog(BuildContext context) {  
-  // Create button  
-  Widget okButton = FlatButton(  
-    child: Text("OK"),  
-    onPressed: () {  
-      Navigator.of(context).pop();  
-    },  
-  );  
-  
-  // Create AlertDialog  
-  AlertDialog alert = AlertDialog(  
-    title: Text("Please provide valid informations"),  
-    //content: Text("This is an alert message."),  
-    actions: [  
-      okButton,  
-    ],  
-  );  
-  
-  // show the dialog  
-  showDialog(  
-    context: context,  
-    builder: (BuildContext context) {  
-      return alert;  
-    },  
-  );  
-}  
+
+showAlertDialog(BuildContext context) {
+  // Create button
+  Widget okButton = FlatButton(
+    child: Text("OK"),
+    onPressed: () {
+      Navigator.of(context).pop();
+    },
+  );
+
+  // Create AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Text("Please provide valid informations"),
+    //content: Text("This is an alert message."),
+    actions: [
+      okButton,
+    ],
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
+}
