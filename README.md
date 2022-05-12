@@ -1,4 +1,6 @@
 pepper-client
+# Install
+- android: https://play.google.com/store/apps/details?id=pepper_client.pepper_client.pepper_client
 
 # How compile .proto
 - for dart:
